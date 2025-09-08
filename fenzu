@@ -165,7 +165,7 @@ common:
 
 proxy-providers-config:
     proxy-providers-use: &proxy-providers-use
-      - All
+      - include-all-proxies: true
       # - add-on
       # - warp
       # - local
