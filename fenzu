@@ -20,9 +20,7 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
-      - WARP+
-      - ProxyChain
+
     proxies-all-fdirect: &proxies-all-fdirect
       - 直接连接
       - 国外流量
@@ -39,9 +37,7 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
-      - WARP+
-      - ProxyChain
+
     proxies-all-oforeign: &proxies-all-oforeign
       - 🇭🇰 AIRPORT-HK
       - 🇨🇳 AIRPORT-TW
@@ -56,9 +52,7 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
-      - WARP+
-      - ProxyChain
+
     proxies-all-for-proxychain: &proxies-all-for-proxychain
       - 🇭🇰 AIRPORT-HK
       - 🇨🇳 AIRPORT-TW
@@ -73,12 +67,12 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
+
       - WARP+
     proxies-all-for-tiktok: &proxies-all-for-tiktok
       - 🇺🇸 AIRPORT-US
       - 国外流量
-      - AIRPORT
+
       - 🇭🇰 AIRPORT-HK
       - 🇨🇳 AIRPORT-TW
       - 🇸🇬 AIRPORT-SG
@@ -101,7 +95,7 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
+
     proxies-all-for-claude: &proxies-all-for-claude
       - 🇬🇧 AIRPORT-EN
       - 🇺🇸 AIRPORT-US
@@ -112,7 +106,7 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
+
     proxies-all-for-gemini: &proxies-all-for-gemini
       - 🇺🇸 AIRPORT-US
       - 🇬🇧 AIRPORT-EN
@@ -123,7 +117,7 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
+
     proxies-all-for-perplexity: &proxies-all-for-perplexity
       - 🇺🇸 AIRPORT-US
       - 🇬🇧 AIRPORT-EN
@@ -134,7 +128,7 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
+
     proxies-all-for-javsp: &proxies-all-for-javsp
       - 🇯🇵 AIRPORT-JP
       - 国外流量
@@ -151,13 +145,11 @@ common:
       - 🇨🇦 AIRPORT-Canada
       - 🇫🇷 AIRPORT-FR
       - 🇦🇺 AIRPORT-AU
-      - AIRPORT
-      - WARP+
-      - ProxyChain
+
     proxies-all-for-reddit: &proxies-all-for-reddit
       - 🇺🇸 AIRPORT-US
       - 国外流量
-      - AIRPORT
+
       - 🇭🇰 AIRPORT-HK
       - 🇨🇳 AIRPORT-TW
       - 🇸🇬 AIRPORT-SG
@@ -173,7 +165,7 @@ common:
 
 proxy-providers-config:
     proxy-providers-use: &proxy-providers-use
-      - airport
+      - All
       # - add-on
       # - warp
       # - local
@@ -568,57 +560,457 @@ proxies: []
 #代理组
 proxy-groups:
   
+proxies:
 
+# Proxy-groups partial template
+proxy-groups:
+  # -
+  #   name: Foreign-StrategySwitch
+  #   icon: *icon-Area
+  #   type: select
+  #   proxies:
+  #     - Foreign-AUTO
+  #     - Foreign-SELECT
+  #     - Local-Proxy
+  # -
+  #   name: Other-StrategySwitch
+  #   icon: *icon-Area
+  #   type: select
+  #   proxies:
+  #     - Other-AUTO
+  #     - Other-SELECT
+  #     - Local-Proxy
+  # -
+  #   name: Foreign-AUTO
+  #   icon: *icon-Auto
+  #   type: url-test  
+  #   url: *health-check-url  
+  #   interval: 30
+  #   proxies:
+  #     - Local-Proxy
+  #     - Foreign-SELECT
+  # -
+  #   name: Other-AUTO
+  #   icon: *icon-Auto
+  #   type: url-test  
+  #   url: *health-check-url  
+  #   interval: 30
+  #   proxies:
+  #     - Local-Proxy
+  #     - Other-SELECT
+  # -
+  #   name: Local-Proxy
+  #   icon: *icon-Proxy
+  #   type: fallback  
+  #   url: *health-check-url  
+  #   interval: 6  
+  #   filter: *proxy-filter-Local  
+  #   use:  
+  #     - local
+  # -
+  #   name: Foreign-SELECT
+  #   icon: *icon-Final
+  #   type: select
+  #   proxies:
+  #     *proxies-all-oforeign
+  # -
+  #   name: Other-SELECT
+  #   icon: *icon-Final
+  #   type: select
+  #   proxies:
+  #     *proxies-all
+  -
+    name: 国外流量
+    icon: *icon-Area
+    type: select
+    proxies:
+      *proxies-all-oforeign
+  -
+    name: 其他流量
+    icon: *icon-Final
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Telegram
+    icon: *icon-Telegram
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Discord
+    icon: *icon-Discord
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Facebook
+    icon: *icon-Facebook
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Reddit
+    icon: *icon-Reddit
+    type: select
+    proxies:
+      *proxies-all-for-reddit
+  -
+    name: OpenAI
+    icon: *icon-OpenAI
+    type: select
+    proxies:
+      *proxies-all-for-openai
+  -
+    name: Claude
+    icon: *icon-Claude
+    type: select
+    proxies:
+      *proxies-all-for-claude
+  -
+    name: Gemini
+    icon: *icon-Gemini
+    type: select
+    proxies:
+      *proxies-all-for-gemini
+  -
+    name: Perplexity
+    icon: *icon-Perplexity
+    type: select
+    proxies:
+      *proxies-all-for-perplexity
+  -
+    name: YouTube
+    icon: *icon-YouTube
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: TikTok
+    icon: *icon-TikTok
+    type: select
+    proxies:
+      *proxies-all-for-tiktok
+  -
+    name: Netflix
+    icon: *icon-Netflix
+    type: select  
+    filter: *proxy-filter-special-streaming-media  
+    use: *proxy-providers-use
+    proxies:
+      *proxies-all
+  -
+    name: DisneyPlus
+    icon: *icon-Disney
+    type: select  
+    filter: *proxy-filter-special-streaming-media  
+    use: *proxy-providers-use
+    proxies:
+      *proxies-all
+  -
+    name: Hulu
+    icon: *icon-Hulu
+    type: select  
+    filter: *proxy-filter-special-streaming-media  
+    use: *proxy-providers-use
+    proxies:
+      *proxies-all
+  -
+    name: HBO
+    icon: *icon-HBO
+    type: select  
+    filter: *proxy-filter-special-streaming-media  
+    use: *proxy-providers-use
+    proxies:
+      *proxies-all
+  -
+    name: Bilibili
+    icon: *icon-bilibili
+    type: select
+    proxies:
+      *proxies-all-fdirect
+  -
+    name: Spotify
+    icon: *icon-Spotify
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Steam
+    icon: *icon-Steam
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Ubisoft
+    icon: *icon-Ubisoft
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Netch
+    icon: *icon-Game
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Microsoft
+    icon: *icon-Microsoft
+    type: select
+    proxies:
+      *proxies-all-fdirect
+  -
+    name: OneDrive
+    icon: *icon-OneDrive
+    type: select
+    proxies:
+      *proxies-all-fdirect
+  -
+    name: OutLook
+    icon: *icon-Mail
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Copilot
+    icon: *icon-Copilot
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: PikPak
+    icon: *icon-Pikpak
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: PayPal
+    icon: *icon-PayPal
+    type: select
+    proxies:
+      *proxies-all
+  -
+    name: Amazon
+    icon: *icon-Amazon
+    type: select
+    proxies:
+      *proxies-all-fdirect
+  -
+    name: Speedtest
+    icon: *icon-Speedtest
+    type: select
+    proxies:
+      *proxies-all-fdirect
+  -
+    name: Apple
+    icon: *icon-Apple
+    type: select
+    proxies:
+      *proxies-all-fdirect
+  -
+    name: JavSP
+    icon: *icon-JavSP
+    type: select
+    proxies:
+      *proxies-all-for-javsp
+  -
+    name: IDM
+    icon: *icon-Download
+    type: select
+    proxies:
+      - 直接连接
+      - 国外流量
+  -
+    name: 直接连接
+    icon: *icon-Direct
+    type: select
+    hidden: true
+    proxies:
+      - DIRECT
+ 
+  # 香港地区 - 自动选最快
+  - name: "🇭🇰 AIRPORT-HK"
+    type: url-test
+    url: http://www.gstatic.com/generate_204  # 统一健康检查URL
+    interval: 600  # 每10分钟测试一次
+    tolerance: 50  # 延迟容忍度50ms
+    include-all-proxies: true  # 包含所有代理节点
+    filter: *proxy-filter-HK  # 筛选香港节点（依赖预定义锚点）
+
+  # 台湾地区 - 自动选最快
+  - name: "🇨🇳 AIRPORT-TW"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-TW  # 筛选台湾节点
+
+  # 新加坡地区 - 自动选最快
+  - name: "🇸🇬 AIRPORT-SG"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-SG  # 筛选新加坡节点
+
+  # 日本地区 - 自动选最快
+  - name: "🇯🇵 AIRPORT-JP"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-JP  # 筛选日本节点
+
+  # 美国地区 - 自动选最快
+  - name: "🇺🇸 AIRPORT-US"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-US  # 筛选美国节点
+ - name: 🇮🇳 AIRPORT-India
+    icon: *icon-India  # 保留印度专属图标
+    type: url-test  # 改为自动测试延迟模式
+    url: http://www.gstatic.com/generate_204  # 统一健康检查URL
+    interval: 600  # 每10分钟测试一次
+    tolerance: 50  # 延迟容忍度50ms（避免频繁切换）
+    include-all-proxies: true  # 从所有代理中筛选
+    filter: *proxy-filter-India  # 筛选印度节点
+
+  - name: 🇬🇧 AIRPORT-EN
+    icon: *icon-United_Kingdom  # 英国专属图标
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-EN  # 筛选英国节点
+
+  - name: 🇮🇪 AIRPORT-Ireland
+    icon: *icon-United_Kingdom  # 若有爱尔兰专属图标可替换（当前用英国图标）
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-Ireland  # 筛选爱尔兰节点
+
+  - name: 🇷🇺 AIRPORT-RU
+    icon: *icon-Russia  # 俄罗斯专属图标
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-RU  # 筛选俄罗斯节点
+
+  - name: 🇨🇦 AIRPORT-Canada
+    icon: *icon-Canada  # 加拿大专属图标
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-Canada  # 筛选加拿大节点
+
+  - name: 🇫🇷 AIRPORT-FR
+    icon: *icon-France  # 法国专属图标
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-FR  # 筛选法国节点
+
+  - name: 🇦🇺 AIRPORT-AU
+    icon: *icon-Australia  # 澳大利亚专属图标
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+    include-all-proxies: true
+    filter: *proxy-filter-AU  # 筛选澳大利亚节点
+
+  -
+    name: WARP+
+    icon: *icon-Cloudflare
+    type: select  
+    filter: *proxy-filter-WARP  
+    use: *proxy-providers-use
+  -
+    name: ProxyChain_Start
+    icon: *icon-Proxy
+    type: select
+    proxies:
+      *proxies-all-for-proxychain
+  -
+    name: ProxyChain_Landing
+    icon: *icon-Proxy
+    type: select
+    proxies:
+      *proxies-all-for-proxychain
+  -
+    name: ProxyChain
+    icon: *icon-Proxy
+    type: relay
+    proxies:
+      - ProxyChain_Start
+      - ProxyChain_Landing
  
 rules:
-  - DOMAIN-SUFFIX,smtp,🎯 全球直连
-  - DOMAIN-KEYWORD,aria2,🎯 全球直连
-  - DOMAIN,clash.razord.top,🎯 全球直连
-  - DOMAIN-SUFFIX,lancache.steamcontent.com,🎯 全球直连
-  - DOMAIN,yacd.haishan.me,✈️ 国外流量
-  - DOMAIN-SUFFIX,appinn.com,✈️ 国外流量
-  - RULE-SET,OpenAI,✈️ 国外流量
-  - RULE-SET,Claude,✈️ 国外流量
-  - RULE-SET,Gemini,✈️ 国外流量
-  - RULE-SET,Perplexity,✈️ 国外流量
-  - RULE-SET,DownLoadClient,🎯 全球直连
-  - RULE-SET,ProxyClient,🎯 全球直连
-  - RULE-SET,AdBlock,\U0001F6D1 广告拦截
-  - RULE-SET,Apple,🎯 全球直连
-  - RULE-SET,Adobe,🎯 全球直连
-  - RULE-SET,Amazon,🎯 全球直连
-  - RULE-SET,Bilibili,🎯 全球直连
-  - RULE-SET,GitHub,✈️ 国外流量
-  - RULE-SET,Google,✈️ 国外流量
-  - RULE-SET,Copilot,✈️ 国外流量
-  - RULE-SET,OneDrive,✈️ 国外流量
-  - RULE-SET,OutLook,✈️ 国外流量
-  - RULE-SET,Microsoft,🎯 全球直连
-  - RULE-SET,Netflix,✈️ 国外流量
-  - RULE-SET,DisneyPlus,✈️ 国外流量
-  - RULE-SET,Hulu,✈️ 国外流量
-  - RULE-SET,HBO,✈️ 国外流量
-  - RULE-SET,TikTok,✈️ 国外流量
-  - RULE-SET,Speedtest,🎯 全球直连
-  - RULE-SET,Steam,🎯 全球直连
-  - RULE-SET,Ubisoft,✈️ 国外流量
-  - RULE-SET,Netch,✈️ 国外流量
-  - RULE-SET,Spotify,✈️ 国外流量
-  - RULE-SET,PikPak,✈️ 国外流量
-  - RULE-SET,Telegram,✈️ 国外流量
-  - RULE-SET,Twitter,✈️ 国外流量
-  - RULE-SET,Tencent,🎯 全球直连
-  - RULE-SET,YouTube,✈️ 国外流量
-  - RULE-SET,PayPal,✈️ 国外流量
-  - RULE-SET,Discord,✈️ 国外流量
-  - RULE-SET,Facebook,✈️ 国外流量
-  - RULE-SET,Reddit,✈️ 国外流量
-  - RULE-SET,JavSP,✈️ 国外流量
-  - RULE-SET,Proxy,✈️ 国外流量
-  - RULE-SET,IDM,🎯 全球直连
-  - DOMAIN-SUFFIX,live.cn,🎯 全球直连
-  - GEOIP,CN,🎯 全球直连
-  - MATCH,🎯 全球直连
+    - DOMAIN-SUFFIX,smtp,DIRECT
+  - DOMAIN-KEYWORD,aria2,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN-SUFFIX,lancache.steamcontent.com,DIRECT
+  - DOMAIN,yacd.haishan.me,国外流量
+  - DOMAIN-SUFFIX,appinn.com,国外流量
+  - RULE-SET,OpenAI,OpenAI
+  - RULE-SET,Claude,Claude
+  - RULE-SET,Gemini,Gemini
+  - RULE-SET,Perplexity,Perplexity
+  - RULE-SET,DownLoadClient,DIRECT
+  - RULE-SET,ProxyClient,DIRECT
+  - RULE-SET,AdBlock,REJECT
+  - RULE-SET,Apple,Apple
+  - RULE-SET,Adobe,其他流量
+  - RULE-SET,Amazon,Amazon
+  - RULE-SET,Bilibili,Bilibili
+  - RULE-SET,GitHub,国外流量
+  - RULE-SET,Google,国外流量
+  - RULE-SET,Copilot,Copilot
+  - RULE-SET,OneDrive,OneDrive
+  - RULE-SET,OutLook,OutLook
+  - RULE-SET,Microsoft,Microsoft
+  - RULE-SET,Netflix,Netflix
+  - RULE-SET,DisneyPlus,DisneyPlus
+  - RULE-SET,Hulu,Hulu
+  - RULE-SET,HBO,HBO
+  - RULE-SET,TikTok,TikTok
+  - RULE-SET,Speedtest,Speedtest
+  - RULE-SET,Steam,Steam
+  - RULE-SET,Ubisoft,Ubisoft
+  - RULE-SET,Netch,Netch
+  - RULE-SET,Spotify,Spotify
+  - RULE-SET,PikPak,PikPak
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,Twitter,国外流量
+  - RULE-SET,Tencent,直接连接
+  - RULE-SET,YouTube,YouTube
+  - RULE-SET,PayPal,PayPal
+  - RULE-SET,Discord,Discord
+  - RULE-SET,Facebook,Facebook
+  - RULE-SET,Reddit,Reddit
+  - RULE-SET,JavSP,JavSP
+  - RULE-SET,Proxy,国外流量
+  - RULE-SET,Direct,DIRECT
+  - RULE-SET,IDM,IDM
+  - DOMAIN-SUFFIX,live.cn,直接连接
+  - GEOIP,CN,DIRECT
+  - MATCH,其他流量
 
 # Rule-providers partial template
 rule-providers:
@@ -868,3 +1260,4 @@ rule-providers:
     path: *rule-file-path-Reddit
     url: *rule-provider-url-Reddit
     interval: *rule-interval
+
